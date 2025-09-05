@@ -1,37 +1,42 @@
-<main>
-  <div class="container">
+<div class="container">
 
   <div class="row">
-
-    <div class="title">🎵 TP1</div>
-
+    <h1>🎵 TP1</h1>
   </div>
 
   <div class="row">
+    <div class="col">
+      Artiste : 
+      <input type="text" name="artistName" [(ngModel)]="artistName" placeholder="Nana Mouskouri"> 
+      &nbsp;
+      <button (click)="getArtistAlbum()">Chercher un artiste</button>
+    </div>
+  </div>
 
-     <!-- Requête #1 : Obtenir les artistes similaires -->
-    <div>
-      Artiste : <input type="text" name="artistName" [(ngModel)]="artistName" placeholder="Nana Mouskouri"> 
-      &nbsp;<button (click)="getArtistAlbum()">Chercher un artiste</button>
+  <hr>
+  
+  <div class="row">
+    <div class="col-6">
+      <h2>Albums de l'artiste {{artistName}}</h2>
       <hr>
-      <div>
-        Résultats :
-      </div>
-      <hr>
-      <div>
-        <ul>
-          <li *ngFor="let albu of albumList">{{albu.name}}</li>
-        </ul>
+      <div *ngFor="let a of albumList" class="row">
+        <div class="col-6">
+          <h4>{{a.name}}</h4>
+          <button>
+            <img src="{{a.imageUrl}}" alt="Photo de l\'album {{a.name}}" class="img-fluid">
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- Requête #2 : Obtenir les meilleures chansons d'un genre -->
-    <div>
-      <div>
-        Résultats :
-      </div>
+    <div class="col-6">
+      <h2>Chansons de l'album</h2>
+      <hr>
+      <ul>
+        <li></li>
+      </ul>
     </div>
   </div>
 </div>
-</main>
+
 <router-outlet />

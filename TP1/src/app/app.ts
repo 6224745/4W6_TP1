@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+  import { Component, signal } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -27,7 +27,9 @@ export class App {
     this.albumList = [];
     let x = await lastValueFrom(this.http.get<any>("http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist="+ this.artistName +"&api_key=9a8a3facebbccaf363bb9fd68fa37abf&format=json"));
     console.log(x);
-    this.albumList.push(x.topalbums.album);
-    console.log(this.albumList);
+    for(let alb of x.topalbums.album)
+    {
+      this.albumList.push(new Album(alb.name, alb.image[2]['#text']))
+    }
   }
 }
