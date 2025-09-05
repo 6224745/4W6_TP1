@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col">
       Artiste : 
-      <input type="text" name="artistName" [(ngModel)]="artistName" placeholder="Nana Mouskouri"> 
+      <input type="text" name="artistName" [(ngModel)]="serchName" placeholder="Nana Mouskouri"> 
       &nbsp;
       <button (click)="getArtistAlbum()">Chercher un artiste</button>
     </div>
@@ -22,9 +22,7 @@
       <div *ngFor="let a of albumList" class="row">
         <div class="col-6">
           <h4>{{a.name}}</h4>
-          <button>
-            <img src="{{a.imageUrl}}" alt="Photo de l\'album {{a.name}}" class="img-fluid">
-          </button>
+          <img src="{{a.imageUrl}}" alt="Photo de l\'album {{a.name}}" class="img-fluid" (click)="getAlbumSongs(a.name)">
         </div>
       </div>
     </div>
@@ -33,7 +31,7 @@
       <h2>Chansons de l'album</h2>
       <hr>
       <ul>
-        <li></li>
+        <li *ngFor="let s of songList">{{s.name}}</li>
       </ul>
     </div>
   </div>
