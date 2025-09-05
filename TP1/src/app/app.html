@@ -5,31 +5,40 @@
   </div>
 
   <div class="row">
-    <div class="col">
+    <div>
       Artiste : 
-      <input type="text" name="artistName" [(ngModel)]="serchName" placeholder="Nana Mouskouri"> 
+      <input type="text" name="serchName" [(ngModel)]="serchName" placeholder="Nana Mouskouri"> 
       &nbsp;
       <button (click)="getArtistAlbum()">Chercher un artiste</button>
     </div>
   </div>
 
   <hr>
-  
+
   <div class="row">
     <div class="col-6">
-      <h2>Albums de l'artiste {{artistName}}</h2>
+      <div class="row">
+        <h2>Albums de l'artiste {{artistName}}</h2>
+      </div>
       <hr>
-      <div *ngFor="let a of albumList" class="row">
-        <div class="col-6">
-          <h4>{{a.name}}</h4>
-          <img src="{{a.imageUrl}}" alt="Photo de l\'album {{a.name}}" class="img-fluid" (click)="getAlbumSongs(a.name)">
+      <div *ngIf="messageAlb" class="alert">
+        {{ messageAlb }}
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6" *ngFor="let a of albumList" >
+          <h5>{{ a.name }}</h5>
+          <img [src]="a.imageUrl" [alt]="'Album ' + a.name" class="img-fluid" (click)="getAlbumSongs(a.name)">
         </div>
       </div>
     </div>
-
     <div class="col-6">
-      <h2>Chansons de l'album</h2>
+      <div class="row">
+        <h2>Chansons de l'album {{nameAlbum}}</h2>
+      </div>
       <hr>
+      <div *ngIf="messageSon" class="alert">
+        {{ messageSon }}
+      </div>
       <ul>
         <li *ngFor="let s of songList">{{s.name}}</li>
       </ul>
